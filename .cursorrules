@@ -1,0 +1,4 @@
+代码库注意事项：
+- 每个文件夹都是一个独立的 cloudflare worker，使用 wrangler 指令创建。
+- 使用 npm 作为包管理
+- 使用 typescript 作为开发语言
