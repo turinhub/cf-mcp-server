@@ -93,4 +93,4 @@ npx workers-mcp setup
 欢迎通过 Issue 和 PR 参与贡献，请遵循现有代码风格。
 
 ## 许可证
-MIT License © 2024 Turinhub
+MIT License © 2025 Turinhub
