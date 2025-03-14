@@ -4,6 +4,8 @@
 
 ## 功能
 
+### 内容提取（reader）
+
 `reader` 方法调用 Jina Reader API 进行内容提取，支持以下参数：
 
 参数：
@@ -13,6 +15,21 @@
 
 返回：
 - 包含结构化内容的 JSON 对象，包含标题、正文、关键信息等
+
+### 语义搜索（search）
+
+`search` 方法调用 Jina Search API 进行语义搜索，支持以下参数：
+
+参数：
+- `query`: 字符串，搜索查询语句（必填）
+- `token`: 字符串，用于认证的 Bearer token（必填）
+- `noContent`: 布尔值，是否排除内容仅返回元数据（默认 false 返回完整内容）
+
+返回：
+- 包含搜索结果的 JSON 对象，包含以下字段：
+  - `results`: 匹配文档数组
+  - `scores`: 相关性评分（0-1）
+  - `engine`: 使用的搜索引擎类型
 
 ## 客户端配置
 
@@ -62,7 +79,7 @@
 4. **缓存问题**：设置 noCache: true 强制刷新内容
 5. **编码问题**：部分网页需指定 charset，可在返回头中查看 Content-Type
 
-### 使用示例
+### 使用示例（AI 生成）
 
 ```typescript
 // 客户端调用示例
@@ -92,6 +109,32 @@ async function fetchArticle(url: string) {
 
 // 调用示例
 fetchArticle('https://example.com/news/2024-tech-trends')
+
+// Search 使用示例
+async function searchDocuments(query: string, token: string) {
+  try {
+    const response = await client.call('search', {
+      query,
+      token,
+      noContent: false
+    })
+
+    if (response.ok) {
+      const results = await response.json()
+      console.log(`找到 ${results.results.length} 条相关结果`)
+      return results.results.map((doc: any) => ({
+        title: doc.metadata.title,
+        score: doc.score,
+        excerpt: doc.content.substring(0, 100)
+      }))
+    }
+  } catch (error) {
+    console.error('搜索失败:', error)
+  }
+}
+
+// 搜索示例
+searchDocuments('人工智能最新进展', 'your_jina_token_here')
 ```
 
 ## 高级配置
