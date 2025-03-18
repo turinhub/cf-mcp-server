@@ -3,15 +3,6 @@ import { ProxyToSelf } from 'workers-mcp'
 
 export default class ImageGenerationWorker extends WorkerEntrypoint<Env> {
   /**
-   * Get details about this worker.
-   * 
-   * @return {string} detailed descriptions of this cloudflare MCP worker and its functions
-   */
-  readMe(name: string) {
-    return `This is a cloudflare MCP worker for image generation. It uses the Cloudflare AI API to generate Images. Currently it only supports the flux - 1 - schnell model.`
-  }
-
-  /**
    * Generate an image using the `flux - 1 - schnell` model. Works best with 8 steps.
    *
    * @param {string} prompt - A text description (in English) of the image you want to generate.

@@ -6,7 +6,7 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "mcp-jina-api",
 	"main": "src/index.ts",
-	"compatibility_date": "2025-03-13",
+	"compatibility_date": "2025-03-10",
 	"observability": {
 		"enabled": true
 	},
