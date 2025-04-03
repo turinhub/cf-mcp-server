@@ -1,5 +1,8 @@
 # Change Log
 
+## v0.1.7 - 20250404
+- 使用 CF 官方的 McpAgent 方式实现 mcp-jina-sse
+
 ## v0.1.6 - 20250403
 - 使用全局 wrangler 管理，移除本地 package.json 中的依赖
 
