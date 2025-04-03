@@ -87,7 +87,14 @@ cd my-new-worker # I always forget this bit
 npm install workers-mcp
 npx workers-mcp setup
 ```
+
+**注意：不要在项目本地 package.json 安装 wrangler，直接使用全局管理。**
+
 2. 实现工具逻辑后更新主服务配置
+3. 使用 @modelcontextprotocol/inspector 测试 MCP
+```bash
+npx @modelcontextprotocol/inspector
+```
 
 ## 贡献说明
 欢迎通过 Issue 和 PR 参与贡献，请遵循现有代码风格。

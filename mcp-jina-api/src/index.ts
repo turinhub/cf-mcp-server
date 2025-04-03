@@ -1,7 +1,7 @@
 import { WorkerEntrypoint } from 'cloudflare:workers'
 import { ProxyToSelf } from 'workers-mcp'
 
-export default class MyWorker extends WorkerEntrypoint<Env> {
+export default class JinaMCP extends WorkerEntrypoint<Env> {
   /**
    * Call Jina Reader API to extract content from a URL
    * 
@@ -45,7 +45,7 @@ export default class MyWorker extends WorkerEntrypoint<Env> {
   }
 
   /**
-   * Call Jina Search API to search for information. A valid Jina API key is required.
+   * Call Jina Search API to search for information.
    * 
    * @param {string} query - The search query
    * @param {string} token - Required Bearer token for authentication

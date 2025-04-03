@@ -46,16 +46,16 @@ export default class MyWorker extends WorkerEntrypoint<Env> {
    * @param {string|string[]} urls - Single URL or array of URLs to extract content from
    * @param {string} token - API key for authentication
    * @param {Object} options - Additional extract options
-   * @param {boolean} [options.includeImages=false] - Whether to include images in the response
-   * @param {string} [options.extractDepth='basic'] - Extraction depth: 'basic' or 'advanced'
+   * @param {boolean} [options.include_images=false] - Whether to include images in the response
+   * @param {string} [options.extract_depth='basic'] - Extraction depth: 'basic' or 'advanced'
    * @return {Promise<TavilyExtractResponse>} The extraction results
    */
   async extract(
     urls: string | string[], 
     token: string,
     options: {
-      includeImages?: boolean;
-      extractDepth?: 'basic' | 'advanced';
+      include_images?: boolean;
+      extract_depth?: 'basic' | 'advanced';
     } = {}
   ): Promise<TavilyExtractResponse> {
     if (!urls) {
@@ -79,8 +79,8 @@ export default class MyWorker extends WorkerEntrypoint<Env> {
         headers,
         body: JSON.stringify({
           urls: urls,
-          include_images: options.includeImages ?? false,
-          extract_depth: options.extractDepth ?? 'basic'
+          include_images: options.include_images ?? false,
+          extract_depth: options.extract_depth ?? 'basic'
         })
       });
       
@@ -103,16 +103,16 @@ export default class MyWorker extends WorkerEntrypoint<Env> {
    * @param {string} token - Required API key for authentication
    * @param {Object} options - Additional search options
    * @param {string} [options.topic='general'] - The category of the search: 'general' or 'news'
-   * @param {string} [options.searchDepth='basic'] - Search depth: 'basic' or 'advanced'
-   * @param {number} [options.maxResults=5] - Maximum number of search results (0-20)
-   * @param {string} [options.timeRange] - Time range filter: 'day', 'week', 'month', 'year', 'd', 'w', 'm', 'y'
+   * @param {string} [options.search_depth='basic'] - Search depth: 'basic' or 'advanced'
+   * @param {number} [options.max_results=5] - Maximum number of search results (0-20)
+   * @param {string} [options.time_range] - Time range filter: 'day', 'week', 'month', 'year', 'd', 'w', 'm', 'y'
    * @param {number} [options.days=3] - Number of days back from current date (for 'news' topic)
-   * @param {boolean|string} [options.includeAnswer=false] - Include AI answer: true/false or 'basic'/'advanced'
-   * @param {boolean} [options.includeRawContent=false] - Include raw content of each result
-   * @param {boolean} [options.includeImages=false] - Include image search results
-   * @param {boolean} [options.includeImageDescriptions=false] - Include descriptions for images
-   * @param {string[]} [options.includeDomains=[]] - List of domains to include
-   * @param {string[]} [options.excludeDomains=[]] - List of domains to exclude
+   * @param {boolean|string} [options.include_answer=false] - Include AI answer: true/false or 'basic'/'advanced'
+   * @param {boolean} [options.include_raw_content=false] - Include raw content of each result
+   * @param {boolean} [options.include_images=false] - Include image search results
+   * @param {boolean} [options.include_image_descriptions=false] - Include descriptions for images
+   * @param {string[]} [options.include_domains=[]] - List of domains to include
+   * @param {string[]} [options.exclude_domains=[]] - List of domains to exclude
    * @return {Promise<TavilySearchResponse>} The search results
    */
   async search(
@@ -120,16 +120,16 @@ export default class MyWorker extends WorkerEntrypoint<Env> {
     token: string, 
     options: {
       topic?: 'general' | 'news';
-      searchDepth?: 'basic' | 'advanced';
-      maxResults?: number;
-      timeRange?: 'day' | 'week' | 'month' | 'year' | 'd' | 'w' | 'm' | 'y';
+      search_depth?: 'basic' | 'advanced';
+      max_results?: number;
+      time_range?: 'day' | 'week' | 'month' | 'year' | 'd' | 'w' | 'm' | 'y';
       days?: number;
-      includeAnswer?: boolean | 'basic' | 'advanced';
-      includeRawContent?: boolean;
-      includeImages?: boolean;
-      includeImageDescriptions?: boolean;
-      includeDomains?: string[];
-      excludeDomains?: string[];
+      include_answer?: boolean | 'basic' | 'advanced';
+      include_raw_content?: boolean;
+      include_images?: boolean;
+      include_image_descriptions?: boolean;
+      include_domains?: string[];
+      exclude_domains?: string[];
     } = {}
   ): Promise<TavilySearchResponse> {
     if (!query) {
@@ -154,16 +154,16 @@ export default class MyWorker extends WorkerEntrypoint<Env> {
         body: JSON.stringify({
           query,
           topic: options.topic || 'general',
-          search_depth: options.searchDepth || 'basic',
-          max_results: options.maxResults !== undefined ? options.maxResults : 5,
-          time_range: options.timeRange || null,
+          search_depth: options.search_depth || 'basic',
+          max_results: options.max_results !== undefined ? options.max_results : 5,
+          time_range: options.time_range || null,
           days: options.days !== undefined ? options.days : 3,
-          include_answer: options.includeAnswer !== undefined ? options.includeAnswer : false,
-          include_raw_content: options.includeRawContent || false,
-          include_images: options.includeImages || false,
-          include_image_descriptions: options.includeImageDescriptions || false,
-          include_domains: options.includeDomains || [],
-          exclude_domains: options.excludeDomains || []
+          include_answer: options.include_answer !== undefined ? options.include_answer : false,
+          include_raw_content: options.include_raw_content || false,
+          include_images: options.include_images || false,
+          include_image_descriptions: options.include_image_descriptions || false,
+          include_domains: options.include_domains || [],
+          exclude_domains: options.exclude_domains || []
         })
       });
       

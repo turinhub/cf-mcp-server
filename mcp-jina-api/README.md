@@ -35,8 +35,6 @@
 
 ### MCP 客户端配置
 
-#### 方法一：使用 workers-mcp CLI（推荐）
-
 ```json
 {
   "mcpServers": {
@@ -45,25 +43,12 @@
       "args": [
         "run",
         "jinaReader", 
-        "http://localhost:8787",
+        "https://mcp-jina-api.turinhub.com",
         "/Users/zhangxudong/Gits/turinhub/cf-mcp-server/mcp-jina-api"
       ],
-      "env": {}
-    }
-  }
-}
-```
-
-#### 方法二：直接使用 URL（适用于 Claude 等客户端）
-
-```json{
-  "mcpServers": {
-    "jinaReader": {
-      "command": "https://mcp-jina-api.turinhub.com",
-      "args": [],
-      "env": {},
-      "disabled": false,
-      "autoApprove": []
+      "env": {
+        "JINA_API_KEY": "your-api-key-here"
+      }
     }
   }
 }
@@ -79,67 +64,20 @@
 4. **缓存问题**：设置 noCache: true 强制刷新内容
 5. **编码问题**：部分网页需指定 charset，可在返回头中查看 Content-Type
 
-### 使用示例（AI 生成）
-
-```typescript
-// 客户端调用示例
-import { MCPClient } from 'workers-mcp'
-
-const client = new MCPClient('https://mcp-jina-api.turinhub.com')
-
-async function fetchArticle(url: string) {
-  try {
-    const response = await client.call('reader', {
-      url,
-      noCache: true
-    })
-
-    if (response.ok) {
-      const article = await response.json()
-      console.log('提取成功:', article.title)
-      return {
-        content: article.content,
-        highlights: article.keyPoints
-      }
-    }
-  } catch (error) {
-    console.error('内容提取失败:', error)
-  }
-}
-
-// 调用示例
-fetchArticle('https://example.com/news/2024-tech-trends')
-
-// Search 使用示例
-async function searchDocuments(query: string, token: string) {
-  try {
-    const response = await client.call('search', {
-      query,
-      token,
-      noContent: false
-    })
-
-    if (response.ok) {
-      const results = await response.json()
-      console.log(`找到 ${results.results.length} 条相关结果`)
-      return results.results.map((doc: any) => ({
-        title: doc.metadata.title,
-        score: doc.score,
-        excerpt: doc.content.substring(0, 100)
-      }))
-    }
-  } catch (error) {
-    console.error('搜索失败:', error)
-  }
-}
-
-// 搜索示例
-searchDocuments('人工智能最新进展', 'your_jina_token_here')
-```
-
 ## 高级配置
 
 环境变量（通过 MCP 配置添加）：
-- `JINA_API_TOKEN`: 用于认证的 API token
+- `JINA_API_KEY`: 用于认证的 API token（必填）。可以在调用 API 时通过参数传递，或在 MCP 配置的 env 中设置。如果在 env 中设置了此变量，则调用 API 时可以省略 token 参数。
 - `CACHE_TTL`: 缓存时间（秒），默认 3600
 - `MAX_CONTENT_LENGTH`: 最大处理内容长度（字符），默认 100000
+
+环境变量的优先级：
+1. 方法调用时提供的 token 参数（优先级最高）
+2. 环境变量 JINA_API_KEY（当方法调用未提供 token 时使用）
+
+### 获取 Jina API 密钥
+
+1. 注册/登录 [Jina AI](https://jina.ai/) 账户
+2. 进入开发者设置页面
+3. 创建新的 API 密钥
+4. 将密钥添加到 MCP 配置的 env 部分

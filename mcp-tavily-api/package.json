@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "deploy": "workers-mcp docgen src/index.ts && wrangler deploy",
-    "dev": "wrangler dev",
-    "start": "wrangler dev",
+    "dev": "workers-mcp docgen src/index.ts && wrangler dev",
+    "start": "workers-mcp docgen src/index.ts && wrangler dev",
     "test": "vitest",
     "cf-typegen": "wrangler types"
   },

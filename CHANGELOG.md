@@ -1,5 +1,8 @@
 # Change Log
 
+## v0.1.6 - 20250403
+- 使用全局 wrangler 管理，移除本地 package.json 中的依赖
+
 ## v0.1.5 - 20250328
 - 增加 cline 的 memory bank 设计
 

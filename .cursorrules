@@ -1,4 +1,9 @@
-代码库注意事项：
-- 每个文件夹都是一个独立的 cloudflare worker，使用 wrangler 指令创建。
-- 使用 npm 作为包管理
-- 使用 typescript 作为开发语言
+请用中文回复。
+
+注意：
+- 如果有不明确的事项，请向我确认，不要直接修改代码。
+
+项目使用：
+- cloudflare worker 框架，使用 wrangler CLI 控制；使用 TypeScript 开发；使用 pnpm 作为包管理。
+- 每个一级文件夹为一个 worker，除了 .memory 文件夹。
+- 不要修改 worker-configuration.d.ts 文件，他是使用 `wrangler types` 指令生成的。
