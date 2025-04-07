@@ -14,9 +14,9 @@ export class JinaMCP extends McpAgent {
 			"reader", 
 			"从URL提取内容", 
 			{ 
-				url: z.string(), 
-				token: z.string().optional(), 
-				noCache: z.boolean().optional().default(false) 
+				url: z.string().describe("需要提取内容的 URL"), 
+				token: z.string().optional().describe("可选的 Jina API 令牌"), 
+				noCache: z.boolean().optional().default(false).describe("是否跳过缓存，默认为 false") 
 			}, 
 			async ({ url, token, noCache }) => {
 				if (!url) {
@@ -61,9 +61,9 @@ export class JinaMCP extends McpAgent {
 			"search", 
 			"使用Jina搜索信息", 
 			{ 
-				query: z.string(), 
-				token: z.string(), 
-				noContent: z.boolean().optional().default(true) 
+				query: z.string().describe("要搜索的查询内容"), 
+				token: z.string().describe("必需的 Jina Search API 令牌"), 
+				noContent: z.boolean().optional().default(true).describe("是否只返回元数据而不返回内容，默认为 true") 
 			}, 
 			async ({ query, token, noContent }) => {
 				if (!query) {

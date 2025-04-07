@@ -4,20 +4,20 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "mcp-jina-sse",
+	"name": "mcp-tavily-sse",
 	"main": "src/index.ts",
-	"compatibility_date": "2025-03-10",
+	"compatibility_date": "2025-04-07",
 	"compatibility_flags": ["nodejs_compat"],
 	"migrations": [
 		{
-			"new_sqlite_classes": ["JinaMCP"],
+			"new_sqlite_classes": ["TavilyMCP"],
 			"tag": "v1"
 		}
 	],
 	"durable_objects": {
 		"bindings": [
 			{
-				"class_name": "JinaMCP",
+				"class_name": "TavilyMCP",
 				"name": "MCP_OBJECT"
 			}
 		]

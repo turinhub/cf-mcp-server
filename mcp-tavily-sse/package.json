@@ -1,5 +1,5 @@
 {
-	"name": "mcp-jina-sse",
+	"name": "mcp-tavily-sse",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
@@ -11,6 +11,7 @@
 		"cf-typegen": "wrangler types"
 	},
 	"devDependencies": {
+		"@types/node": "^22.14.0",
 		"marked": "^15.0.7",
 		"typescript": "^5.8.3",
 		"workers-mcp": "0.1.0-3"

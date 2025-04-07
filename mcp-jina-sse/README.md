@@ -32,12 +32,27 @@
 
 ### MCP 客户端配置
 
+推荐使用 SSE 方式直接集成：
+
 ```json
 {
   "mcpServers": {
-    "jinaSSE": {
+    "jina": {
       "type": "sse",
       "url": "https://mcp-jina-sse.turinhub.com/sse"
+    }
+  }
+}
+```
+
+如果不支持 SSE 方式调用 MCP，可通过 mcp-remote 包使用本地方式：
+
+```json
+{
+  "mcpServers": {
+    "jina": {
+      "command": "npx",
+      "args": ["mcp-remote", "https://mcp-jina-sse.turinhub.com/sse"]
     }
   }
 }
@@ -52,15 +67,6 @@
 3. **内容提取异常**：检查目标网页是否包含 robots.txt 限制
 4. **缓存问题**：设置 noCache: true 强制刷新内容
 5. **SSE 连接断开**：检查网络连接和防火墙设置，SSE 需要保持长连接
-
-## 高级配置
-
-环境变量（通过 MCP 配置添加）：
-- `JINA_API_KEY`: 用于认证的 API token（必填）。可以在调用 API 时通过参数传递，或在 MCP 配置的 env 中设置。如果在 env 中设置了此变量，则调用 API 时可以省略 token 参数。
-
-环境变量的优先级：
-1. 方法调用时提供的 token 参数（优先级最高）
-2. 环境变量 JINA_API_KEY（当方法调用未提供 token 时使用）
 
 ### 获取 Jina API 密钥
 
