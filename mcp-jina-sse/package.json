@@ -11,14 +11,12 @@
 		"cf-typegen": "wrangler types"
 	},
 	"devDependencies": {
-		"marked": "^15.0.7",
 		"typescript": "^5.8.3",
-		"workers-mcp": "0.1.0-3"
+		"workers-mcp": "0.0.13"
 	},
 	"dependencies": {
 		"@modelcontextprotocol/sdk": "^1.8.0",
-		"agents": "^0.0.54",
-		"hono": "^4.7.5",
+		"agents": "^0.0.94",
 		"zod": "^3.24.2"
 	}
 }
