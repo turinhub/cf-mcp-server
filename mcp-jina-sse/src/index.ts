@@ -107,7 +107,6 @@ export class JinaMCP extends McpAgent {
 	}
 }
 
-// 直接导出MCP实例
 export default {
 	fetch(request: Request, env: Env, ctx: ExecutionContext) {
 		const { pathname } = new URL(request.url);

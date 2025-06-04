@@ -1,8 +1,9 @@
 # Change Log
 
-## v0.1.9 - v0.1.10 - 20250604
+## v0.1.9 - v0.1.11 - 20250604
 - 新增 mcp-browser-rendering-sse 方法，使用 CF 官方的模板。
 - 新增 mcp-jina-sse 对 streamable 模式的支持。
+- 修改 mcp-tavily-sse 改为 bearer token 认证后访问，并通过 secret 内置 tavily api token。
 
 ## v0.1.8 - 20250407
 - 新增 mcp-tavily-sse 方法，使用 CF 官方的 McpAgent 方式实现
