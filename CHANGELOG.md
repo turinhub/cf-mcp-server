@@ -1,5 +1,8 @@
 # Change Log
 
+## v0.1.9 - 20250604
+- 新增 mcp-browser-rendering-sse 方法，使用 CF 官方的模板。
+
 ## v0.1.8 - 20250407
 - 新增 mcp-tavily-sse 方法，使用 CF 官方的 McpAgent 方式实现
 - mcp-jina-sse 的 2 个 tools 增加 parameters description

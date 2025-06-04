@@ -1,0 +1,19 @@
+{
+  "name": "mcp-browser-rendering-sse",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "workers-mcp docgen src/index.ts && wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "cf-typegen": "wrangler types"
+  },
+  "devDependencies": {
+    "@cloudflare/playwright-mcp": "^0.0.3",
+    "@cloudflare/workers-types": "^4.20250312.0",
+    "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "workers-mcp": "^0.0.13"
+  }
+}
